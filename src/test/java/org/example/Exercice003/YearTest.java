@@ -7,8 +7,7 @@ public class YearTest {
     @Test
     public void TestIsLeapYear(){
         Year testYear = new Year();
-        testYear.IsYearLeap();
-
-        Assertions.asser
+        final long TEST_VALUE = 2000;
+        Assertions.assertEquals(true, testYear.IsYearLeap(TEST_VALUE));
     }
 }
