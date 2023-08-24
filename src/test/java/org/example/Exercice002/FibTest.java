@@ -36,6 +36,7 @@ public class FibTest {
         expected.add(4, 3);
         expected.add(5, 5);
 
+
         Assertions.assertFalse(fib.getFibSeries().isEmpty());
         Assertions.assertTrue(fib.getFibSeries().contains(3));
         Assertions.assertFalse(fib.getFibSeries().size() == 6);
