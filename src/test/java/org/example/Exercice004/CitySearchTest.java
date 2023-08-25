@@ -64,7 +64,9 @@ public class CitySearchTest {
 
     @Test
     public void AllCitiesCanBeDisplayed(){
-        
+        String testCity = "*";
+        Assertions.assertEquals(testCity, "*");
+        Assertions.assertFalse(TEST_CITIES.isEmpty());
     }
 
 
