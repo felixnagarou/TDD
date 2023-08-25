@@ -1,5 +1,7 @@
 package org.example.Exercice005;
 
+import java.time.LocalDate;
+
 public class Product {
 
     private int id;
@@ -9,10 +11,14 @@ public class Product {
     private String name;
 
     private String category;
-    private int sellin;
-    private int quality;
+    private double sellin;
+    private double quality;
 
-    public Product(String name, String category, int sellin, int quality){
+    public Product(){
+    }
+
+
+    public Product(String name, String category, double sellin, double quality, ){
         this.name = name;
         this.category = category;
         this.sellin = sellin;
@@ -43,27 +49,42 @@ public class Product {
         this.category = category;
     }
 
-    public int getSellin() {
+    public double getSellin() {
         return sellin;
     }
 
-    public void setSellin(int sellin) {
+    public void setSellin(double sellin) {
         this.sellin = sellin;
     }
 
-    public int getQuality() {
+    public double getQuality() {
         return quality;
     }
 
-    public void setQuality(int quality) {
+    public void setQuality(double quality) {
         this.quality = quality;
     }
 
-    public int getQualityEvolutionRate() {
-        return qualityEvolutionRate;
+
+
+    public double factorQuality() {
+        if (category == "Dairy" && name != "Brie vieilli") {
+            switch ((int) sellin) {
+                case 1:
+                    return -2;
+                case 2:
+                    return -4;
+                default:
+                    return -1;
+            }
+        } else {
+            switch ((int) sellin) {
+                case 1:
+                    return -2;
+                case 2:
+                    return -4;
+            }
+        }
     }
 
-    public void setQualityEvolutionRate(int qualityEvolutionRate) {
-        this.qualityEvolutionRate = qualityEvolutionRate;
-    }
 }
