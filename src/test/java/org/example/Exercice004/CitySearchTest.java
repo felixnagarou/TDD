@@ -1,6 +1,8 @@
 package org.example.Exercice004;
 
+import org.example.Exercice004.Exception.CityNotFoundException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -11,12 +13,28 @@ public class CitySearchTest {
             "Vancouver", "Amsterdam", "Vienne", "Sydney", "New York",
             "Londres", "Bangkok", "Hong Kong", "Dubaï", "Rome");
 
-    public static CitySearch citySearch;
+    private CitySearch citySearch;
+
+
+    @BeforeEach
+    void setup(){
+        citySearch = new CitySearch();
+
+    }
+
+
 
 
     @Test
     public void CityIsAtLeastTwoChars(){
         Assertions.assertFalse(TEST_CITIES.get(0).codePointCount(0, -1) >= 2);
+    }
+
+    @Test
+    public void testSearchCitiesShouldRaiseNotFoundExceptionWhenSearchIsLessThan2Chars(){
+        Assertions.assertThrowsExactly(CityNotFoundException.class, () ->{
+            citySearch.searchCities("t");
+        });
     }
 
     @Test
@@ -34,13 +52,14 @@ public class CitySearchTest {
     @Test
     public void CityCanBeSuggestedGivenFirstTwoChars(){
         String testCity = "Va";
-        Assertions.assertEquals(testCity, TEST_CITIES.get(0).substring(0, 2));
+        Assertions.assertTrue(TEST_CITIES.contains(testCity));
     }
 
     @Test
-    public void CityCanBeSuggestedGivenInputIsNotFullName(){
-        String testCity = "ri";
-        Assertions.assertEquals(testCity, TEST_CITIES.get(0).substring(0, TEST_CITIES.get(0).length()));
+    public void CityCanBeSuggestedGivenInputIsNotFullNameAndNotExactCase(){
+        String testCity = "Ris";
+        int index = 0;
+        Assertions.assertTrue(TEST_CITIES.get(index).toUpperCase().contains(testCity.toUpperCase()));
     }
 
     @Test
