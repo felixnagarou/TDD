@@ -8,6 +8,8 @@ public class GameTest {
     private static MockWordSetGeneratorImpl mockWordSet;
 
     private static final char MOCKCHAR = 'c';
+
+    private static final String MOCKWORD = "cat";
     Game game;
 
 
@@ -15,13 +17,13 @@ public class GameTest {
     @BeforeEach
     void setUp(){
          game = new Game(mockWordSet);
+         game.setNumberOfTries(1);
+         game.setTriesCounter(1);
+         game.setWordToFind(MOCKWORD);
     }
 
 
-    @Test
-    public void wordGenerationShouldBeRandomised(){
 
-    }
 
     @Test void wordListShouldNotBeNull(){
         Assertions.assertTrue(mockWordSet.equals(null));
@@ -31,6 +33,11 @@ public class GameTest {
     @Test
     public void charInputShouldBeAlphabetical(){
         Assertions.assertEquals(MOCKCHAR, 'c');
+    }
+
+    @Test
+    public void charInputShouldBeFormatted(){
+        Assertions.assertTrue(MOCKCHAR == 'C');
     }
 
     @Test
@@ -45,14 +52,22 @@ public class GameTest {
 
     @Test
     public void gameShouldReturnLossMessageWhenNumberOfTriesIsExceeded(){
-        Assertions.assertFalse(game.getTriesCounter() > game.getNumberOfTries());
+        Assertions.assertFalse(game.getTriesCounter() == game.getNumberOfTries());
     }
-    public void gameShouldUnmaskCharWhenCharisFound(){
+
+    @Test
+    public void gameShouldUnmaskCharWhenCharIsFound(){
         Assertions.assertEquals(false, game.isCharFound());
     }
 
+    @Test
     public void gameShouldIncrementTryCounterWhenCharIsNotFound(){
         Assertions.assertEquals(true, game.isCharFound());
+    }
+
+    @Test
+    public void maskShouldReturnMaskedWordOfSameLengthAsWordToFind(){
+        Assertions.assertEquals(game.getWordToFind().length(), game.mask(mockWordSet).length());
     }
 
 

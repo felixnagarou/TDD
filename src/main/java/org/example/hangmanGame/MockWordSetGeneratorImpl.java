@@ -9,7 +9,7 @@ public class MockWordSetGeneratorImpl implements WordSetGenerator {
 
     @Override
     public List<String> setWordList() {
-        mockWordList.add("Chat");
+        mockWordList.add("cat");
         return mockWordList;
     }
 

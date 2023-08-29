@@ -1,8 +1,11 @@
 package org.example.hangmanGame;
 
+import static javax.swing.UIManager.get;
+
 public class Game {
     private WordSetGenerator wordSet;
     private String wordToFind;
+    private String maskedWord;
     private char charInput;
     private boolean wordIsFound;
     private int numberOfTries;
@@ -10,7 +13,8 @@ public class Game {
 
     private boolean isCharFound;
 
-    public Game (WordSetGenerator wordSet){
+
+    public Game(WordSetGenerator wordSet) {
         this.wordSet = wordSet;
     }
 
@@ -60,5 +64,17 @@ public class Game {
 
     public String getWordToFind() {
         return wordToFind;
+    }
+
+    public void setWordToFind(String wordToFind) {
+        this.wordToFind = wordToFind;
+    }
+
+    public String mask(MockWordSetGeneratorImpl wordSetGenerator) {
+        wordToFind = (String) wordSetGenerator.getWordList().get(0);
+        for (int i = 0; i < wordToFind.length(); i++) {
+            maskedWord = "*" + maskedWord;
+        }
+        return maskedWord;
     }
 }
